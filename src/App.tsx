@@ -1,16 +1,7 @@
-import React from 'react';
-import './App.css';
-import { Route, Routes } from 'react-router-dom';
-import LoginForm from './components/Login';
-import Recipes from './components/Recipes';
+import RoutesApp from './routes/RoutesApp';
 
-function App() {
+export default function App() {
   return (
-    <Routes>
-      <Route path="/" Component={ LoginForm } />
-      <Route path="/meals" Component={ Recipes } />
-    </Routes>
+    <RoutesApp />
   );
 }
-
-export default App;
