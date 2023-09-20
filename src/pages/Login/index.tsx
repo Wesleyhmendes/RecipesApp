@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function LoginForm() {
+function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isFormValid, setIsFormValid] = useState(false); // Estado para controlar a validação do formulário
@@ -71,4 +71,4 @@ function LoginForm() {
   );
 }
 
-export default LoginForm;
+export default Login;
