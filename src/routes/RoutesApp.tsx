@@ -7,6 +7,7 @@ export default function RoutesApp() {
     <Routes>
       <Route path="/" Component={ Login } />
       <Route path="/meals" Component={ Recipes } />
+      <Route path="/drinks" Component={ Recipes } />
     </Routes>
   );
 }
