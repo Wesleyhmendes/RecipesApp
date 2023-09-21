@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Header from '../../components/Header';
 import MealsContext from '../../context/MealContext/MealsContext';
 import DrinksContext from '../../context/DrinkContext/DrinksContext';
 
@@ -20,16 +19,15 @@ export default function Recipes() {
   }
 
   if (location === '/meals' && !mealsData) {
-    window.alert('erro');
+    window.alert("Sorry, we haven't found any recipes for these filters.");
   }
 
   if (location === '/drinks' && !drinksData) {
-    window.alert('erro');
+    window.alert("Sorry, we haven't found any recipes for these filters.");
   }
 
   return (
-    <>
-      <Header />
+    <main>
       { location === '/meals' ? (
         mealsData?.slice(0, 12).map((meal, index) => (
           <div data-testid={ `${index}-recipe-card` } key={ meal.idMeal }>
@@ -55,6 +53,6 @@ export default function Recipes() {
           </div>
         ))
       ) }
-    </>
+    </main>
   );
 }

@@ -8,7 +8,8 @@ function Header() {
   const pathName = useLocation().pathname;
   const pageTitle = useLocation().pathname
     .split('/')[1]
-    .replace(/(^\w{1})|(-\w{1})/g, (match) => match.toUpperCase());
+    .replace(/(^\w{1})|(-\w{1})/g, (match) => match.toUpperCase())
+    .replace(/-/g, ' ');
 
   const showSearchIcon = () => {
     return (pathName === '/meals' || pathName === '/drinks');
