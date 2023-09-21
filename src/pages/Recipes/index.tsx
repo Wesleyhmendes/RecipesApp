@@ -1,15 +1,15 @@
 import { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../../components/Header';
-import MealsContext from '../../context/apiContext/MealContext';
-import DrinksContext from '../../context/apiContext/DrinkContext';
+import MealsContext from '../../context/MealContext/MealsContext';
+import DrinksContext from '../../context/DrinkContext/DrinksContext';
 
 export default function Recipes() {
-  const { apiResponseDrinks } = useContext(DrinksContext);
-  const { apiResponseMeals } = useContext(MealsContext);
+  const { drinksData } = useContext(DrinksContext);
+  const { mealsData } = useContext(MealsContext);
 
   const location = useLocation().pathname;
-  console.log(apiResponseMeals);
+  console.log(mealsData);
   return (
     <>
       <Header />

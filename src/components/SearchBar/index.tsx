@@ -2,8 +2,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import useFetchDrinks from '../../hooks/useFetchDrinks';
 import useFetchMeal from '../../hooks/useFetchMeal';
-import DrinksContext from '../../context/apiContext/DrinkContext';
-import MealsContext from '../../context/apiContext/MealContext';
+import DrinksContext from '../../context/DrinkContext/DrinksContext';
+import MealsContext from '../../context/MealContext/MealsContext';
 
 // A pesquisa do usuário é armazenada num state. Quando o botão é apertado, as informações deste state vão para um segundo state
 // O fetch é feito com as informações deste segundo state
@@ -35,12 +35,12 @@ function SearchBar() {
     setUserSearch(value);
   };
 
-  const { setApiDrinks } = useContext(DrinksContext);
-  const { setApiMeals } = useContext(MealsContext);
+  const { updateDrinks } = useContext(DrinksContext);
+  const { updateMeals } = useContext(MealsContext);
 
   useEffect(() => {
-    setApiDrinks(dataDrinks);
-    setApiMeals(dataMeals);
+    updateDrinks(dataDrinks);
+    updateMeals(dataMeals);
   }, [searchInfo]);
 
   const handleSubmit = () => {

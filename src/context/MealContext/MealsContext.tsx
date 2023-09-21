@@ -2,8 +2,8 @@ import { createContext } from 'react';
 import { MealType } from '../../type';
 
 export type MealsContextType = {
-  apiResponseMeals: MealType[];
-  setApiMeals: (param: MealType[]) => void;
+  mealsData: MealType[];
+  updateMeals: (param: MealType[]) => void;
 };
 
 const MealsContext = createContext({} as MealsContextType);

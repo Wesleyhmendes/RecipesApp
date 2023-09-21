@@ -1,21 +1,21 @@
 import { useState } from 'react';
 import { MealType } from '../../type';
-import MealsContext from './MealContext';
+import MealsContext from './MealsContext';
 
 type MealsProviderProps = {
   children: React.ReactNode;
 };
 
 export default function MealsProvider({ children }: MealsProviderProps) {
-  const [apiResponseMeals, setApiResponseMeals] = useState<MealType[]>([]);
+  const [mealsData, setMealsData] = useState<MealType[]>([]);
 
-  const setApiMeals = (param: MealType[]) => {
-    setApiResponseMeals(param);
+  const updateMeals = (param: MealType[]) => {
+    setMealsData(param);
   };
 
   const value = {
-    apiResponseMeals,
-    setApiMeals,
+    mealsData,
+    updateMeals,
   };
 
   return (
