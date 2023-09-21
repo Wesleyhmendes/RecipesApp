@@ -1,69 +1,69 @@
-import React, { useState } from 'react';
+import { ChangeEvent, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UserInfoType } from '../../type';
+import UserInfoContext from '../../context/UserInfo/UserInfoContext';
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isFormValid, setIsFormValid] = useState(false);
-
-  const validateForm = () => {
-    const isValid = /\S+@\S+\.\S+/.test(email) && password.length >= 6;
-    setIsFormValid(isValid);
-  };
-
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newEmail = e.target.value;
-    setEmail(newEmail);
-    validateForm();
-  };
-
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newPassword = e.target.value;
-    setPassword(newPassword);
-    validateForm();
+  const INITIAL_STATE: UserInfoType = {
+    email: '',
+    password: '',
   };
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const { updateUser } = useContext(UserInfoContext);
 
-    localStorage.setItem('user', JSON.stringify({ email }));
+  const [user, setUserInfo] = useState<UserInfoType>(INITIAL_STATE);
+  const [isDisable, setIsDisable] = useState<boolean>(true);
 
-    setEmail('');
-    setPassword('');
+  const validateFields = ({ email, password }: UserInfoType) => {
+    const validateRegexEmail = /\S+@\S+\.\S+/;
+    const isValid = validateRegexEmail.test(email) && password.length > 6;
+    setIsDisable(!isValid);
+  };
 
-    // redirecionando
+  const handleChange = ({ target: { name, value } }: ChangeEvent<HTMLInputElement>) => {
+    const updateUserInfo = { ...user, [name]: value };
+    setUserInfo(updateUserInfo);
+    validateFields(updateUserInfo);
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    updateUser(user);
+    localStorage.setItem('user', JSON.stringify({ email: user.email }));
     navigate('/meals');
   };
 
   return (
-    <div>
+    <main>
       <h2>Login</h2>
       <form onSubmit={ handleSubmit }>
         <input
+          name="email"
           type="email"
           placeholder="Email"
-          value={ email }
-          onChange={ handleEmailChange }
+          value={ user.email }
+          onChange={ handleChange }
           data-testid="email-input"
         />
         <input
+          name="password"
           type="password"
           placeholder="Senha"
-          value={ password }
-          onChange={ handlePasswordChange }
+          value={ user.password }
+          onChange={ handleChange }
           data-testid="password-input"
         />
         <button
           type="submit"
           data-testid="login-submit-btn"
-          disabled={ !isFormValid }
+          disabled={ isDisable }
         >
           Entrar
         </button>
       </form>
-    </div>
+    </main>
   );
 }
 

@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import UserInfoContext from './userInfoContext';
-import { UserInfoType } from '../type';
+import UserInfoContext from './UserInfoContext';
+import { UserInfoType } from '../../type';
 
-type ThemeProviderProps = {
+type UserInfoProviderProps = {
   children: React.ReactNode;
 };
 
-export default function ThemeProvider({ children }: ThemeProviderProps) {
+export default function UserInfoProvider({ children }: UserInfoProviderProps) {
   const INITIAL_USER = {
     email: '',
     password: '',
@@ -14,8 +14,13 @@ export default function ThemeProvider({ children }: ThemeProviderProps) {
 
   const [userInfo, setUserInfo] = useState<UserInfoType>(INITIAL_USER);
 
+  const updateUser = (newInfo: UserInfoType) => {
+    setUserInfo({ ...userInfo, ...newInfo });
+  };
+
   const value = {
     userInfo,
+    updateUser,
   };
 
   return (
