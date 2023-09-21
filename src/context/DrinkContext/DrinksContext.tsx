@@ -1,9 +1,9 @@
 import { createContext } from 'react';
-import { DrinkType } from '../../type';
+import { DrinkType, FetchType } from '../../type';
 
 export type DrinkContextType = {
   drinksData: DrinkType[];
-  updateDrinks: (drinks: DrinkType[]) => void;
+  fetchDataDrinks: (drinks: FetchType) => void;
 };
 
 const DrinksContext = createContext({} as DrinkContextType);
