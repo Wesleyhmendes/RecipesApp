@@ -4,10 +4,9 @@ import { useNavigate } from 'react-router-dom';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isFormValid, setIsFormValid] = useState(false); // Estado para controlar a validação do formulário
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const validateForm = () => {
-    // Validação simples: e-mail válido e senha com mais ou 6 caracteres
     const isValid = /\S+@\S+\.\S+/.test(email) && password.length >= 6;
     setIsFormValid(isValid);
   };
@@ -28,12 +27,9 @@ function Login() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Aqui você pode adicionar a lógica para lidar com o envio do formulário
 
-    // Salve o email da pessoa usuária no localStorage
     localStorage.setItem('user', JSON.stringify({ email }));
 
-    // Limpe os campos do formulário após a submissão
     setEmail('');
     setPassword('');
 

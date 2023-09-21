@@ -1,13 +1,12 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import SearchBar from '../SearchBar';
 
-interface HeaderProps {
-  pageTitle: string;
-  showSearchIcon?: boolean;
-}
-
-function Header({ pageTitle, showSearchIcon = true }: HeaderProps) {
+function Header() {
   const [searchVisible, setSearchVisible] = useState(false);
+
+  const pageTitle = useLocation().pathname;
+  const showSearchIcon = true;
 
   const toggleSearch = () => {
     setSearchVisible(!searchVisible);
@@ -16,6 +15,7 @@ function Header({ pageTitle, showSearchIcon = true }: HeaderProps) {
   return (
     <header>
       <div>
+        <SearchBar />
         <Link to="/profile">
           <img
             src="src/images/profileIcon.svg"
@@ -24,7 +24,7 @@ function Header({ pageTitle, showSearchIcon = true }: HeaderProps) {
           />
         </Link>
       </div>
-      {showSearchIcon && (
+      { showSearchIcon && (
         <div>
           <button onClick={ toggleSearch }>
             <img
@@ -34,8 +34,8 @@ function Header({ pageTitle, showSearchIcon = true }: HeaderProps) {
             />
           </button>
         </div>
-      )}
-      {searchVisible && (
+      ) }
+      { searchVisible && (
         <div>
           <input
             type="text"
@@ -43,8 +43,8 @@ function Header({ pageTitle, showSearchIcon = true }: HeaderProps) {
             placeholder="Search"
           />
         </div>
-      )}
-      <h1 data-testid="page-title">{pageTitle}</h1>
+      ) }
+      <h1 data-testid="page-title">{ pageTitle }</h1>
     </header>
   );
 }

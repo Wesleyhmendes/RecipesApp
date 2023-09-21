@@ -1,18 +1,13 @@
 import { useState, useEffect } from 'react';
+import { FetchType } from '../type';
 
-type FetchType = {
-  userSearch: string;
-  searchType: 'ingredient' | 'name' | 'firstLetter' | string;
-};
-
-function useFetch({ userSearch, searchType }: FetchType) {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+function useFetchMeal({ userSearch, searchType }: FetchType) {
+  const [dataMeals, setDataMeals] = useState([]);
+  const [loadingMeals, setLoadingMeals] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       let url = '';
-
       switch (searchType) {
         case 'ingredient':
           url = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${userSearch}`;
@@ -22,7 +17,7 @@ function useFetch({ userSearch, searchType }: FetchType) {
           break;
         case 'firstLetter':
           if (userSearch.length > 1) {
-            window.alert('Your search must have only 1 (one) character');
+            window.alert('erro');
           } else {
             url = `https://www.themealdb.com/api/json/v1/1/search.php?f=${userSearch}`;
           }
@@ -30,22 +25,19 @@ function useFetch({ userSearch, searchType }: FetchType) {
         default:
           break;
       }
-
       try {
         const response = await fetch(url);
         const jsonData = await response.json();
-        setData(jsonData);
-        setLoading(false);
+        setDataMeals(jsonData);
+        setLoadingMeals(false);
       } catch (error) {
         console.error('Erro ao buscar dados:', error);
-        setLoading(false);
+        setLoadingMeals(false);
       }
     };
-
     fetchData();
   }, [userSearch, searchType]);
-
-  return { data, loading };
+  return { dataMeals, loadingMeals };
 }
 
-export default useFetch;
+export default useFetchMeal;
