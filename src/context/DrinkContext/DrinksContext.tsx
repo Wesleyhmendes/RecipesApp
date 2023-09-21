@@ -2,7 +2,7 @@ import { createContext } from 'react';
 import { DrinkType, FetchType } from '../../type';
 
 export type DrinkContextType = {
-  drinksData: DrinkType[];
+  drinksData: DrinkType[] | null;
   fetchDataDrinks: (drinks: FetchType) => void;
 };
 
