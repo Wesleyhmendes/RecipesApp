@@ -20,7 +20,7 @@ export default function MealsProvider({ children }: MealsProviderProps) {
         break;
       case 'firstLetter':
         if (search.length > 1) {
-          window.alert('erro');
+          window.alert('Your search must have only 1 (one) character');
         } else {
           url = `https://www.themealdb.com/api/json/v1/1/search.php?f=${search}`;
         }

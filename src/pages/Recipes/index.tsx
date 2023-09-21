@@ -11,27 +11,50 @@ export default function Recipes() {
   const navigate = useNavigate();
   const location = useLocation().pathname;
 
-  if (mealsData.length === 1 && location === '/meals') {
+  if (mealsData?.length === 1 && location === '/meals') {
     navigate(`/meals/${mealsData[0].idMeal}`);
   }
 
-  if (drinksData.length === 1 && location === '/drinks') {
+  if (drinksData?.length === 1 && location === '/drinks') {
     navigate(`/drinks/${drinksData[0].idDrink}`);
+  }
+
+  if (location === '/meals' && !mealsData) {
+    window.alert('erro');
+  }
+
+  if (location === '/drinks' && !drinksData) {
+    window.alert('erro');
   }
 
   return (
     <>
       <Header />
       { location === '/meals' ? (
-        mealsData.map((meal) => (
-          <div key={ meal.idMeal }>{ meal.strCategory }</div>
+        mealsData?.slice(0, 12).map((meal, index) => (
+          <div data-testid={ `${index}-recipe-card` } key={ meal.idMeal }>
+            <p data-testid={ `${index}-card-name` }>{ meal.strMeal }</p>
+            <img
+              width="150"
+              data-testid={ `${index}-card-img` }
+              src={ meal.strMealThumb }
+              alt={ meal.strMeal }
+            />
+          </div>
         ))
       ) : (
-        drinksData.map((drink) => (
-          <div key={ drink.idDrink }>{ drink.strDrink }</div>
+        drinksData?.slice(0, 12).map((drink, index) => (
+          <div data-testid={ `${index}-recipe-card` } key={ drink.idDrink }>
+            <p data-testid={ `${index}-card-name` }>{ drink.strDrink }</p>
+            <img
+              width="150"
+              data-testid={ `${index}-card-img` }
+              src={ drink.strDrinkThumb }
+              alt={ drink.strDrink }
+            />
+          </div>
         ))
       ) }
-      <div>Recipes</div>
     </>
   );
 }
