@@ -1,24 +1,29 @@
-import { useLocation } from 'react-router-dom';
-import { ChangeEvent, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import useFetchDrinks from '../../hooks/useFetchDrinks';
+import useFetchMeal from '../../hooks/useFetchMeal';
+import DrinksContext from '../../context/apiContext/DrinkContext';
+import MealsContext from '../../context/apiContext/MealContext';
+
+// A pesquisa do usuário é armazenada num state. Quando o botão é apertado, as informações deste state vão para um segundo state
+// O fetch é feito com as informações deste segundo state
 
 function SearchBar() {
-  const [disableFetch, setDisableFetch] = useState(false);
-  const [
-    radioSelected, setRadioSelected,
-  ] = useState('ingredient');
+  const [searchInfo, setSearchInfo] = useState({ radio: '', search: '' });
 
+  const [radioSelected, setRadioSelected] = useState('ingredient');
   const [userSearch, setUserSearch] = useState<string>('');
 
-  const locationMeal = useLocation().pathname === '/meal';
-  const locationDrinks = useLocation().pathname === '/drinks';
+  const navigate = useNavigate();
 
-  useFetchDrinks({ userSearch, searchType: radioSelected });
+  const { dataDrinks } = useFetchDrinks({
+    userSearch: searchInfo.search, searchType: searchInfo.radio,
+  });
 
-  // const { data, loading } = useFetchMeal({ userSearch, searchType: radioSelected });
-  const { dataDrinks, loadingDrinks } = useFetchDrinks(
-    { userSearch, searchType: radioSelected },
-  );
+  const { dataMeals } = useFetchMeal({
+    userSearch: searchInfo.search, searchType: searchInfo.radio });
+
+  const location = useLocation().pathname;
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
@@ -30,8 +35,29 @@ function SearchBar() {
     setUserSearch(value);
   };
 
+  const { setApiDrinks } = useContext(DrinksContext);
+  const { setApiMeals } = useContext(MealsContext);
+
+  useEffect(() => {
+    setApiDrinks(dataDrinks);
+    setApiMeals(dataMeals);
+  }, [searchInfo]);
+
   const handleSubmit = () => {
-    setDisableFetch(!disableFetch);
+    setSearchInfo({
+      ...searchInfo,
+      radio: radioSelected,
+      search: userSearch,
+    });
+
+    if (location === '/meals' && dataMeals.length === 1) {
+      const mealId = dataMeals[0].idMeal;
+      navigate(`/meals/${mealId}`);
+    }
+    if (location === '/drinks' && dataDrinks.length === 1) {
+      const drinksId = dataDrinks[0].idMeal;
+      navigate(`/meals/${drinksId}`);
+    }
   };
 
   return (

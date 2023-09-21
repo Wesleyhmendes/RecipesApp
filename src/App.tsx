@@ -1,7 +1,13 @@
+import DrinkProvider from './context/apiContext/DrinkProvider';
+import MealsProvider from './context/apiContext/MealProvider';
 import RoutesApp from './routes/RoutesApp';
 
 export default function App() {
   return (
-    <RoutesApp />
+    <DrinkProvider>
+      <MealsProvider>
+        <RoutesApp />
+      </MealsProvider>
+    </DrinkProvider>
   );
 }
