@@ -4,8 +4,8 @@ export type UserInfoType = {
 };
 
 export type FetchType = {
-  userSearch: string;
-  searchType: 'ingredient' | 'name' | 'firstLetter' | string;
+  radioSelected: 'ingredient' | 'name' | 'firstLetter' | string;
+  search: string,
 };
 
 export type MealType = {

@@ -1,62 +1,42 @@
-import { useLocation, useNavigate } from 'react-router-dom';
-import { ChangeEvent, useContext, useEffect, useState } from 'react';
-import useFetchDrinks from '../../hooks/useFetchDrinks';
-import useFetchMeal from '../../hooks/useFetchMeal';
+import { useLocation } from 'react-router-dom';
+import { ChangeEvent, useContext, useState } from 'react';
 import DrinksContext from '../../context/DrinkContext/DrinksContext';
 import MealsContext from '../../context/MealContext/MealsContext';
-
-// A pesquisa do usuário é armazenada num state. Quando o botão é apertado, as informações deste state vão para um segundo state
-// O fetch é feito com as informações deste segundo state
+import { FetchType } from '../../type';
 
 function SearchBar() {
-  const [searchInfo, setSearchInfo] = useState({ radio: '', search: '' });
-
-  const [radioSelected, setRadioSelected] = useState('ingredient');
-  const [userSearch, setUserSearch] = useState<string>('');
-
-  const navigate = useNavigate();
-
-  const { dataDrinks } = useFetchDrinks({
-    userSearch: searchInfo.search, searchType: searchInfo.radio,
+  const [userSearchInfo, setUserSearchInfo] = useState<FetchType>({
+    radioSelected: 'ingredient',
+    search: '',
   });
-
-  const { dataMeals } = useFetchMeal({
-    userSearch: searchInfo.search, searchType: searchInfo.radio });
 
   const location = useLocation().pathname;
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    setRadioSelected(value);
+    setUserSearchInfo({
+      ...userSearchInfo,
+      radioSelected: value,
+    });
   };
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
-    setUserSearch(value);
+    setUserSearchInfo({
+      ...userSearchInfo,
+      search: value,
+    });
   };
 
-  const { updateDrinks } = useContext(DrinksContext);
-  const { updateMeals } = useContext(MealsContext);
-
-  useEffect(() => {
-    updateDrinks(dataDrinks);
-    updateMeals(dataMeals);
-  }, [searchInfo]);
+  const { fetchDataMeals } = useContext(MealsContext);
+  const { fetchDataDrinks } = useContext(DrinksContext);
 
   const handleSubmit = () => {
-    setSearchInfo({
-      ...searchInfo,
-      radio: radioSelected,
-      search: userSearch,
-    });
-
-    if (location === '/meals' && dataMeals.length === 1) {
-      const mealId = dataMeals[0].idMeal;
-      navigate(`/meals/${mealId}`);
+    if (location === '/meals') {
+      fetchDataMeals(userSearchInfo);
     }
-    if (location === '/drinks' && dataDrinks.length === 1) {
-      const drinksId = dataDrinks[0].idMeal;
-      navigate(`/meals/${drinksId}`);
+    if (location === '/drinks') {
+      fetchDataDrinks(userSearchInfo);
     }
   };
 
@@ -66,7 +46,7 @@ function SearchBar() {
         <input
           data-testid="search-input"
           name="searchBar"
-          value={ userSearch }
+          value={ userSearchInfo.search }
           onChange={ (event) => handleSearch(event) }
           type="text"
         />
