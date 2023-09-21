@@ -5,8 +5,14 @@ import SearchBar from '../SearchBar';
 function Header() {
   const [searchVisible, setSearchVisible] = useState(false);
 
-  const pageTitle = useLocation().pathname;
-  const showSearchIcon = true;
+  const pathName = useLocation().pathname;
+  const pageTitle = useLocation().pathname
+    .split('/')[1]
+    .replace(/(^\w{1})|(-\w{1})/g, (match) => match.toUpperCase());
+
+  const showSearchIcon = () => {
+    return (pathName === '/meals' || pathName === '/drinks');
+  };
 
   const toggleSearch = () => {
     setSearchVisible(!searchVisible);
@@ -15,7 +21,7 @@ function Header() {
   return (
     <header>
       <div>
-        <SearchBar />
+        <h1 data-testid="page-title">{ pageTitle }</h1>
         <Link to="/profile">
           <img
             src="src/images/profileIcon.svg"
@@ -24,7 +30,7 @@ function Header() {
           />
         </Link>
       </div>
-      { showSearchIcon && (
+      { showSearchIcon() && (
         <div>
           <button onClick={ toggleSearch }>
             <img
@@ -34,17 +40,12 @@ function Header() {
             />
           </button>
         </div>
-      ) }
+      )}
       { searchVisible && (
         <div>
-          <input
-            type="text"
-            data-testid="search-input"
-            placeholder="Search"
-          />
+          <SearchBar />
         </div>
       ) }
-      <h1 data-testid="page-title">{ pageTitle }</h1>
     </header>
   );
 }
