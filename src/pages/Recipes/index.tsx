@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import MealsContext from '../../context/MealContext/MealsContext';
 import DrinksContext from '../../context/DrinkContext/DrinksContext';
 import Category from '../../components/Category';

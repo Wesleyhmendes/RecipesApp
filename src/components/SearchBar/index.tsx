@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ChangeEvent, MouseEvent, useContext, useEffect, useState } from 'react';
+import { ChangeEvent, useContext, useState } from 'react';
 import DrinksContext from '../../context/DrinkContext/DrinksContext';
 import MealsContext from '../../context/MealContext/MealsContext';
 import { FetchType } from '../../type';
