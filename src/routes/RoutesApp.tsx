@@ -5,11 +5,14 @@ import Layout from '../components/Layout';
 import Profile from '../pages/Profile';
 import DoneRecipes from '../pages/DoneRecipes';
 import FavoriteRecipes from '../pages/FavoriteRecipes';
+import RecipeDetails from '../pages/RecipeDetails';
 
 export default function RoutesApp() {
   return (
     <Routes>
       <Route path="/" Component={ Login } />
+      <Route path="/meals/:id" Component={ RecipeDetails } />
+      <Route path="/drinks/:id" Component={ RecipeDetails } />
       <Route path="/" Component={ Layout }>
         <Route path="meals" Component={ Recipes } />
         <Route path="drinks" Component={ Recipes } />
