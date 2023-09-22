@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import MealsContext from '../../context/MealContext/MealsContext';
 import DrinksContext from '../../context/DrinkContext/DrinksContext';
+import Category from '../../components/Category';
 
 export default function Recipes() {
   const { drinksData } = useContext(DrinksContext);
@@ -28,6 +29,7 @@ export default function Recipes() {
 
   return (
     <main>
+      <Category />
       { location === '/meals' ? (
         mealsData?.slice(0, 12).map((meal, index) => (
           <div data-testid={ `${index}-recipe-card` } key={ meal.idMeal }>
