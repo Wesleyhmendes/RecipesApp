@@ -6,6 +6,10 @@ import MealsContext from '../../context/MealContext/MealsContext';
 export default function Category() {
   const [categoryButtons, setCategoryButtons] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [toggleCategory, setToggleCategory] = useState({
+    meals: [false, false, false, false, false],
+    drinks: [false, false, false, false, false],
+  });
 
   const location = useLocation().pathname;
 
@@ -21,9 +25,9 @@ export default function Category() {
     const response = await fetch(url);
     const jsonData = await response.json();
 
-    if (jsonData.meals) {
+    if (location === '/meals' && jsonData.meals) {
       setCategoryButtons(jsonData.meals.slice(0, 5));
-    } else {
+    } else if (location === '/drinks' && jsonData.drinks) {
       setCategoryButtons(jsonData.drinks.slice(0, 5));
     }
     setLoading(false);
@@ -32,16 +36,44 @@ export default function Category() {
   const { fetchDataMeals } = useContext(MealsContext);
   const { fetchDataDrinks } = useContext(DrinksContext);
 
-  const handleClick = (buttonName: string) => {
+  const handleClick = (buttonName: string, index: number) => {
     if (location === '/meals') {
-      fetchDataMeals({
-        radioSelected: 'category',
-        search: buttonName,
+      const mealsArray = toggleCategory.meals.slice();
+      if (!toggleCategory.meals[index]) {
+        fetchDataMeals({
+          radioSelected: 'category',
+          search: buttonName,
+        });
+        mealsArray[index] = true;
+      } else {
+        fetchDataMeals({
+          radioSelected: 'clear',
+          search: '',
+        });
+        mealsArray[index] = false;
+      }
+      setToggleCategory({
+        ...toggleCategory,
+        meals: mealsArray,
       });
-    } else {
-      fetchDataDrinks({
-        radioSelected: 'category',
-        search: buttonName,
+    } else if (location === '/drinks') {
+      const drinksArray = toggleCategory.drinks.slice();
+      if (!toggleCategory.drinks[index]) {
+        fetchDataDrinks({
+          radioSelected: 'category',
+          search: buttonName,
+        });
+        drinksArray[index] = true;
+      } else {
+        fetchDataDrinks({
+          radioSelected: 'clear',
+          search: '',
+        });
+        drinksArray[index] = false;
+      }
+      setToggleCategory({
+        ...toggleCategory,
+        drinks: drinksArray,
       });
     }
   };
@@ -52,11 +84,19 @@ export default function Category() {
         radioSelected: 'clear',
         search: '',
       });
+      setToggleCategory({
+        ...toggleCategory,
+        meals: [false, false, false, false, false],
+      });
     }
     if (location === '/drinks') {
       fetchDataDrinks({
         radioSelected: 'clear',
         search: '',
+      });
+      setToggleCategory({
+        ...toggleCategory,
+        drinks: [false, false, false, false, false],
       });
     }
   };
@@ -71,9 +111,9 @@ export default function Category() {
         <p>Carregando...</p>
       ) : (
         <div>
-          { categoryButtons.map((category: any) => (
+          { categoryButtons.map((category: any, index) => (
             <button
-              onClick={ () => handleClick(category.strCategory) }
+              onClick={ () => handleClick(category.strCategory, index) }
               data-testid={ `${category.strCategory}-category-filter` }
               key={ category.strCategory }
             >
