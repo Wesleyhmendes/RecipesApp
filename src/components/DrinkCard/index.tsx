@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { DrinkType, MealType } from '../../type';
 
 type DrinkCardProps = {
-  recipeDrinkData: DrinkType;
+  recipeData: DrinkType | MealType;
 };
 
-export default function DrinkCard({ recipeDrinkData }: DrinkCardProps) {
+export default function DrinkCard({ recipeData }: DrinkCardProps) {
   const [mealsData, setMealData] = useState<MealType[]>([]);
 
   useEffect(() => {
@@ -22,30 +22,30 @@ export default function DrinkCard({ recipeDrinkData }: DrinkCardProps) {
       <section>
         <img
           data-testid="recipe-photo"
-          src={ recipeDrinkData.strDrinkThumb }
+          src={ recipeData.strDrinkThumb }
           alt="imagem da receita"
         />
-        <h2 data-testid="recipe-title">{recipeDrinkData.strDrink}</h2>
-        <h3 data-testid="recipe-category">{recipeDrinkData.strAlcoholic}</h3>
+        <h2 data-testid="recipe-title">{recipeData.strDrink}</h2>
+        <h3 data-testid="recipe-category">{recipeData.strAlcoholic}</h3>
         <ul>
-          {Object.keys(recipeDrinkData)
+          {Object.keys(recipeData)
             .filter((key) => key.includes('strIngredient'))
             .map((ingredient: string, index: number) => (
-              recipeDrinkData[ingredient] !== null
-              && recipeDrinkData[ingredient] !== ''
+              recipeData[ingredient] !== null
+              && recipeData[ingredient] !== ''
               && (
                 <li key={ index }>
                   <p data-testid={ `${index}-ingredient-name-and-measure` }>
-                    {`${recipeDrinkData[ingredient]}`}
+                    {`${recipeData[ingredient]}`}
                   </p>
                   <p data-testid={ `${index}-ingredient-name-and-measure` }>
-                    {`${recipeDrinkData[`strMeasure${Number(index) + 1}`]}`}
+                    {`${recipeData[`strMeasure${Number(index) + 1}`]}`}
                   </p>
                 </li>
               )
             ))}
         </ul>
-        <p data-testid="instructions">{recipeDrinkData.strInstructions}</p>
+        <p data-testid="instructions">{recipeData.strInstructions}</p>
       </section>
       {mealsData.length! && (
         <div

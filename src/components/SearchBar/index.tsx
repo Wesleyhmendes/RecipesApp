@@ -1,68 +1,44 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { ChangeEvent, useContext, useState } from 'react';
 import DrinksContext from '../../context/DrinkContext/DrinksContext';
 import MealsContext from '../../context/MealContext/MealsContext';
 import { FetchType } from '../../type';
 
 function SearchBar() {
-  const [fetchStateMeal, setFetchStateMeal] = useState(false);
-  const [fetchStateDrink, setFetchStateDrink] = useState(false);
-
   const [userSearchInfo, setUserSearchInfo] = useState<FetchType>({
     radioSelected: 'ingredient',
     search: '',
   });
 
+  const { fetchDataMeals } = useContext(MealsContext);
+  const { fetchDataDrinks } = useContext(DrinksContext);
+
   const location = useLocation().pathname;
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
+  const handleChange = ({ target: { name, value } }: ChangeEvent<HTMLInputElement>) => {
     setUserSearchInfo({
       ...userSearchInfo,
-      radioSelected: value,
+      [name]: value,
     });
   };
 
-  const navigate = useNavigate();
-
-  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    setUserSearchInfo({
-      ...userSearchInfo,
-      search: value,
-    });
-  };
-
-  const { fetchDataMeals, mealsData } = useContext(MealsContext);
-  const { fetchDataDrinks, drinksData } = useContext(DrinksContext);
-
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (location === '/meals') {
       fetchDataMeals(userSearchInfo);
-      setFetchStateMeal(true);
     }
     if (location === '/drinks') {
       fetchDataDrinks(userSearchInfo);
-      setFetchStateDrink(true);
     }
   };
-
-  if (mealsData?.length === 1 && location === '/meals' && fetchStateMeal) {
-    navigate(`/meals/${mealsData[0].idMeal}`);
-  }
-
-  if (drinksData?.length === 1 && location === '/drinks' && fetchStateDrink) {
-    navigate(`/drinks/${drinksData[0].idDrink}`);
-  }
 
   return (
     <div>
       <label>
         <input
           data-testid="search-input"
-          name="searchBar"
+          name="search"
           value={ userSearchInfo.search }
-          onChange={ (event) => handleSearch(event) }
+          onChange={ (event) => handleChange(event) }
           type="text"
         />
       </label>
@@ -75,8 +51,7 @@ function SearchBar() {
       <br />
       <label>
         <input
-          name="radioInput"
-          defaultChecked
+          name="radioSelected"
           value="ingredient"
           onChange={ (event) => handleChange(event) }
           data-testid="ingredient-search-radio"
@@ -86,7 +61,7 @@ function SearchBar() {
       </label>
       <label>
         <input
-          name="radioInput"
+          name="radioSelected"
           value="name"
           onChange={ (event) => handleChange(event) }
           data-testid="name-search-radio"
@@ -96,7 +71,7 @@ function SearchBar() {
       </label>
       <label>
         <input
-          name="radioInput"
+          name="radioSelected"
           value="firstLetter"
           onChange={ (event) => handleChange(event) }
           data-testid="first-letter-search-radio"
