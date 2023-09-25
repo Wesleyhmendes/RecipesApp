@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FetchType, MealType } from '../../type';
 import MealsContext from './MealsContext';
 
@@ -8,6 +9,7 @@ type MealsProviderProps = {
 
 export default function MealsProvider({ children }: MealsProviderProps) {
   const [mealsData, setMealsData] = useState<MealType[]>([]);
+  const navigate = useNavigate();
 
   const fetchDataMeals = async ({ radioSelected, search }: FetchType) => {
     let url = '';
@@ -37,7 +39,11 @@ export default function MealsProvider({ children }: MealsProviderProps) {
 
     const response = await fetch(url);
     const jsonData = await response.json();
-    setMealsData(jsonData.meals);
+    if (jsonData.meals) {
+      setMealsData(jsonData.meals);
+      if (jsonData.meals.length === 1
+        && radioSelected !== 'category') navigate(`/meals/${jsonData.meals[0].idMeal}`);
+    } else alert("Sorry, we haven't found any recipes for these filters.");
   };
 
   const fetchDefaultData = async () => {

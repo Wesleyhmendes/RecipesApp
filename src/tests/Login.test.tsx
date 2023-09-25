@@ -1,10 +1,11 @@
 import { screen } from '@testing-library/react';
-import App from '../App';
-import { renderWithRouter } from '../utils/renderWithRouter';
+import { renderWithRouter } from './utils/renderWithRouter';
+import Login from '../pages/Login';
+import UserInfoProvider from '../context/UserInfo/UserInfoProvider';
 
-describe('Testa a tela login', () => {
+describe('Testa o componente login', () => {
   test('Testa se os inputs de email e senha e o botão entrar estão presentes', () => {
-    renderWithRouter(<App />);
+    renderWithRouter(<Login />);
 
     expect(screen.getByTestId('email-input')).toBeInTheDocument();
     expect(screen.getByTestId('password-input')).toBeInTheDocument();
@@ -12,7 +13,11 @@ describe('Testa a tela login', () => {
   });
 
   test('Testa se ao preencher os campos de input corretamente e clicar no botão Entrar a aplicação é redirecionada para a rota "/meals"', async () => {
-    const { user } = renderWithRouter(<App />);
+    const { user } = renderWithRouter(
+      <UserInfoProvider>
+        <Login />
+      </UserInfoProvider>,
+    );
 
     const emailTest = 'test@test.com';
     const passwordTest = '1234567';

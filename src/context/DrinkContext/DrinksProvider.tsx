@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { DrinkType, FetchType } from '../../type';
 import DrinksContext from './DrinksContext';
 
@@ -8,6 +9,7 @@ type DrinksProviderProps = {
 
 export default function DrinksProvider({ children }: DrinksProviderProps) {
   const [drinksData, setDrinksData] = useState<DrinkType[] | null>([]);
+  const navigate = useNavigate();
 
   const fetchDataDrinks = async ({ radioSelected, search }: FetchType) => {
     let url = '';
@@ -35,11 +37,12 @@ export default function DrinksProvider({ children }: DrinksProviderProps) {
         break;
     }
     const response = await fetch(url);
-    if (response) {
-      const jsonData = await response.json();
+    const jsonData = await response.json();
+    if (jsonData.drinks) {
       setDrinksData(jsonData.drinks);
+      if (jsonData.drinks.length === 1) navigate(`/drinks/${jsonData.drinks[0].idDrink}`);
     } else {
-      setDrinksData(null);
+      alert("Sorry, we haven't found any recipes for these filters.");
     }
   };
 

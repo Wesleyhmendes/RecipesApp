@@ -10,14 +10,6 @@ export default function Recipes() {
 
   const location = useLocation().pathname;
 
-  if (location === '/meals' && !mealsData) {
-    window.alert("Sorry, we haven't found any recipes for these filters.");
-  }
-
-  if (location === '/drinks' && !drinksData) {
-    window.alert("Sorry, we haven't found any recipes for these filters.");
-  }
-
   return (
     <main>
       <Category />
