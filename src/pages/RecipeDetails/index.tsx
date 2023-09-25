@@ -18,7 +18,6 @@ export default function RecipeDetails() {
       }
       const response = await fetch(URL_API);
       const { meals } = await response.json();
-      console.log(meals[0]);
       setRecipeData(meals[0]);
     };
     getData();
