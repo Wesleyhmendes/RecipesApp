@@ -11,13 +11,14 @@ export type FetchType = {
 export type MealType = {
   idMeal: string;
   strMeal: string;
-  strDrinkAlternate: null | string;
+  strDrinkAlternate: string;
   strCategory: string;
   strArea: string;
   strInstructions: string;
   strMealThumb: string;
   strTags: string;
   strYoutube: string;
+  [strIngredient: string]: string;
   strIngredient1: string;
   strIngredient2: string;
   strIngredient3: string;
@@ -59,7 +60,7 @@ export type MealType = {
   strMeasure19: string;
   strMeasure20: string;
   strSource: string;
-  dateModified: null | string;
+  dateModified: string;
 };
 
 export type MealsResponse = {
@@ -88,6 +89,7 @@ export type DrinkType = {
   strInstructionsZH_HANS: null | string;
   strInstructionsZH_HANT: null | string;
   strDrinkThumb: string;
+  [strIngredient: string]: null | string;
   strIngredient1: string;
   strIngredient2: string;
   strIngredient3: string;
@@ -125,6 +127,7 @@ export type DrinkType = {
 export type DrinksResponse = {
   drinks: DrinkType[];
 };
+
 
 export type FetchByIdResponse = {
   dateModified: null
@@ -178,4 +181,34 @@ export type FetchByIdResponse = {
   strSource: string | null,
   strTags: string | null,
   strYoutube: string | null,
+
+export type InProgressRecipeType = {
+  drinks: {
+    [key: string]: string[];
+  };
+  meals: {
+    [key: string]: string[];
+  };
+};
+
+export type DoneRecipeType = {
+  id: string,
+  type: string,
+  nationality: string,
+  category: string,
+  alcoholicOrNot: string,
+  name: string,
+  image: string,
+  doneDate: string,
+  tags: string
+};
+
+export type FavoriteRecipeType = {
+  id: string,
+  type: string,
+  nationality: string,
+  category: string,
+  alcoholicOrNot: string,
+  name: string,
+  image: string,
 };
