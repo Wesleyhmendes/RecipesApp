@@ -17,7 +17,7 @@ export default function RoutesApp() {
       <Route path="/" Component={ Layout }>
         <Route path="meals" Component={ Recipes } />
         <Route path="drinks" Component={ Recipes } />
-        <Route path="teste" Component={ RecipesInProgress } />
+        <Route path="teste" Component={ FavoriteRecipes } />
         <Route path="profile" Component={ Profile } />
         <Route path="done-recipes" Component={ DoneRecipes } />
         <Route path="favorite-recipes" Component={ FavoriteRecipes } />
