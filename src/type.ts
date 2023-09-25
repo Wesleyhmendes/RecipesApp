@@ -30,7 +30,6 @@ export type DrinksResponse = {
   drinks: DrinkType[];
 };
 
-
 export type FetchByIdResponse = {
   dateModified: null
   idMeal: string | null,
@@ -83,6 +82,7 @@ export type FetchByIdResponse = {
   strSource: string | null,
   strTags: string | null,
   strYoutube: string | null,
+};
 
 export type InProgressRecipeType = {
   drinks: {
