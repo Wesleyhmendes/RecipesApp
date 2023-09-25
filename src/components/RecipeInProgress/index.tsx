@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { json, useLocation, useParams } from 'react-router-dom';
 import './style.css';
-import { FetchByIdResponse } from '../../type';
 
 export default function RecipesInProgress() {
-  const [apiResponse, setApiResponse] = useState<FetchByIdResponse>();
-  const [ingredientKey, setIngredientKey] = useState<string[]>([]);
+  const [apiResponse, setApiResponse] = useState();
+  const [ingredients, setIngredients] = useState<string[]>([]);
+  const [checkedMap, setCheckedMap] = useState<{ [key: number]: boolean }>({});
 
-  const initialCheckBoxInputs: any = {};
-  for (let i = 1; i <= 20; i++) {
-    initialCheckBoxInputs[`strIngredient${i}`] = false;
-  }
-  const [checkBoxInputs, setCheckboxInputs] = useState<{ [key: string]: boolean }>(
-    initialCheckBoxInputs,
-  );
+  // const { id } = useParams();
+  // const location = useLocation().pathname;
 
-  const location = useLocation().pathname;
+  // let url = '';
+
+  // if (location.includes('meals')) {
+  //   url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+  // } else {
+  //   url = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
+  // }
+
   const url = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i=52977';
   const id = 52977;
 
@@ -23,48 +25,83 @@ export default function RecipesInProgress() {
     const fetchById = async () => {
       const response = await fetch(url);
       const jsonData = await response.json();
+
       setApiResponse(jsonData.meals[0]);
+
       const ingredientsKeys = Object.keys(jsonData.meals[0])
         .filter((key) => key.includes('strIngredient'));
 
-      setIngredientKey(ingredientsKeys);
+      setIngredients(ingredientsKeys);
+
+      let localStorageData = JSON.parse(localStorage
+        .getItem('inProgressRecipes') || '{}');
+
+      if (!localStorageData || localStorageData === '{}') {
+        localStorageData = {
+          drinks: {},
+          meals: {
+            id: [],
+          },
+        };
+        localStorage.setItem('inProgressRecipes', JSON.stringify(localStorageData));
+      }
+
+      const checkedIngredients = localStorageData[id] || {};
+
+      const initialCheckedMap = ingredientsKeys.reduce((map, ingredient, index) => {
+        map[index] = checkedIngredients.includes(apiResponse[ingredient]);
+        return map;
+      }, {});
+
+      setCheckedMap(initialCheckedMap);
     };
     fetchById();
-  }, [location, id, url]);
+  }, []);
 
-  const handleList = (ingredient: string) => {
-    setCheckboxInputs((prevState) => {
-      const updatedCheckboxInputs = { ...prevState };
-      updatedCheckboxInputs[ingredient] = !prevState[ingredient];
-      return updatedCheckboxInputs;
-    });
+  const handleList = (index: number) => {
+    const newCheckedMap = {
+      ...checkedMap,
+      [index]: !checkedMap[index],
+    };
+    setCheckedMap(newCheckedMap);
+
+    const selectedIngredients = ingredients
+      .filter((ingredient, idx) => newCheckedMap[idx])
+      .map((ingredient) => apiResponse[ingredient]);
+
+    const localStorageData = JSON.parse(localStorage
+      .getItem('inProgressRecipes') || '{}');
+    const recipeData = localStorageData[id] || {};
+    recipeData[id] = selectedIngredients;
+    localStorage.setItem('inProgressRecipes', JSON.stringify({
+      ...localStorageData,
+      [id]: recipeData,
+    }));
   };
 
   return (
     <div>
       { apiResponse ? (
-        <section>
+        <section className="recipesIngProgressSection">
           <img
             width="200"
             data-testid="recipe-photo"
-            src={ (apiResponse.strMealThumb as string) }
-            alt={ (apiResponse.strMeal as string) }
+            src={ apiResponse.strMealThumb }
+            alt={ apiResponse.strMeal }
           />
           <h1 data-testid="recipe-title">{ apiResponse.strMeal }</h1>
-          { ingredientKey.map((ingredient, index) => (
+          { ingredients.map((ingredient, index) => (
             apiResponse[ingredient] ? (
               <label
                 key={ index }
                 data-testid={ `${index}-ingredient-step` }
               >
                 <input
-                  checked={ checkBoxInputs[ingredient] }
-                  onClick={ () => handleList(ingredient) }
+                  checked={ checkedMap[index] }
+                  onClick={ () => handleList(index) }
                   type="checkbox"
                 />
-                <p
-                  className={ checkBoxInputs[ingredient] ? 'decoration' : 'noDecoration' }
-                >
+                <p className={ checkedMap[index] ? 'decoration' : 'noDecoration' }>
                   { apiResponse[ingredient] }
                 </p>
               </label>
