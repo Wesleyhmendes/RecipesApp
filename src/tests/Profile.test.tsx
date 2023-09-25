@@ -1,10 +1,6 @@
 import { screen } from '@testing-library/dom';
 import { renderWithRouter } from './utils/renderWithRouter';
-import Header from '../components/Header';
 import Profile from '../pages/Profile';
-
-const profileId = 'profile-top-btn';
-const buttonActiveInputId = 'search-top-btn';
 
 describe('Testa o componente Profile', () => {
   test('Verifica se o email e todos os botões são exibidos na tela', () => {
