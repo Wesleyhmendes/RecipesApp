@@ -102,7 +102,7 @@ export type DoneRecipeType = {
   name: string,
   image: string,
   doneDate: string,
-  tags: string
+  tags: string[]
 };
 
 export type FavoriteRecipeType = {
