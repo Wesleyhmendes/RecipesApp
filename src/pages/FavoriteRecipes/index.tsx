@@ -1,5 +1,6 @@
-import { MouseEvent, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FavoriteRecipeType } from '../../type';
 
 type FavoriteRecipesStorage = {
   id: number,
@@ -28,7 +29,9 @@ export default function FavoriteRecipes() {
   }]);
 
   useEffect(() => {
-    const getLocalStorageData = JSON.parse(localStorage.getItem('doneRecipes'));
+    const getLocalStorageData = JSON.parse(
+      localStorage.getItem('favoriteRecipes') as string,
+    );
     if (getLocalStorageData) {
       setDoneRecipes(getLocalStorageData);
     }
@@ -43,21 +46,28 @@ export default function FavoriteRecipes() {
   };
 
   const handleRemoveFavorites = (recipeId: number) => {
-    const getLocalStorageData = JSON.parse(localStorage.getItem('doneRecipes'));
+    const getLocalStorageData = JSON.parse(
+      localStorage.getItem('favoriteRecipes') as string,
+    );
     const updateFavorites = getLocalStorageData
       .filter((recipe: FavoriteRecipesStorage) => recipe.id !== recipeId);
-    localStorage.setItem('doneRecipes', JSON.stringify(updateFavorites));
+    localStorage.setItem('favoriteRecipes', JSON.stringify(updateFavorites));
   };
 
-  const handleCategory = (event: MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleCategory = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const { value } = event.currentTarget;
-    const localStorageData = JSON.parse(localStorage.getItem('doneRecipes'));
-    const filterByCategory = localStorageData.filter((recipe) => recipe.type === value);
+    const localStorageData = JSON.parse(
+      localStorage.getItem('favoriteRecipes') as string,
+    );
+    const filterByCategory = localStorageData
+      .filter((recipe: FavoriteRecipeType) => recipe.type === value);
     setDoneRecipes(filterByCategory);
   };
 
   const clearCategory = () => {
-    const localStorageData = JSON.parse(localStorage.getItem('doneRecipes'));
+    const localStorageData = JSON.parse(
+      localStorage.getItem('favoriteRecipes') as string,
+    );
     setDoneRecipes(localStorageData);
   };
 
@@ -112,7 +122,7 @@ export default function FavoriteRecipes() {
               <img src="src/images/shareIcon.svg" alt="compartilhar" />
             </button>
             <button
-              onClick={ handleRemoveFavorites(recipe.id) }
+              onClick={ () => handleRemoveFavorites(recipe.id) }
               data-testid={ `${index}-horizontal-favorite-btn` }
             >
               <img src="src/images/blackHeartIcon.svg" alt="favoritar" />

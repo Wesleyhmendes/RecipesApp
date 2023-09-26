@@ -1,8 +1,0 @@
-.decoration {
-  text-decoration: line-through solid black;
-}
-
-.recipesIngProgressSection {
-  display: flex;
-  flex-direction: column;
-}
