@@ -3,6 +3,16 @@ export type UserInfoType = {
   password: string;
 };
 
+export type FavoriteRecipesStorage = {
+  id: number,
+  type: string,
+  nationality: string,
+  category: string,
+  alcoholicOrNot: string,
+  name: string,
+  image: string,
+};
+
 export type FetchType = {
   radioSelected: 'ingredient' | 'name' | 'firstLetter' | string;
   search: string,
