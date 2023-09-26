@@ -131,6 +131,9 @@ export default function RecipeDetails() {
         <button
           className={ style.btnStartRecipe }
           data-testid="start-recipe-btn"
+          onClick={
+            () => navigate(`/${type}/${id}/in-progress`)
+          }
         >
           Continue Recipe
         </button>

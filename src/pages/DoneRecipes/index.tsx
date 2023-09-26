@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { DoneRecipeType } from '../../type';
+import shareIcon from '../../images/shareIcon.svg';
 
 export default function DoneRecipes() {
   const [recipesDone, setRecipesDone] = useState<DoneRecipeType[]>([]);
@@ -17,7 +18,8 @@ export default function DoneRecipes() {
     : recipesDone.filter((recipe) => recipe.type === filter);
 
   const copyText = async (recipe: DoneRecipeType) => {
-    const recipeUrl = `${window.location.origin}/${recipe.type}/${recipe.id}`;
+    const recipeUrl = `${window.location.origin}/${recipe.type}s/${recipe.id}`;
+    setShareMessage(true);
 
     try {
       await navigator.clipboard.writeText(recipeUrl);
@@ -37,14 +39,14 @@ export default function DoneRecipes() {
 
       </button>
       <button
-        onClick={ () => setFilter('meals') }
+        onClick={ () => setFilter('meal') }
         data-testid="filter-by-meal-btn"
       >
         Meals
 
       </button>
       <button
-        onClick={ () => setFilter('drinks') }
+        onClick={ () => setFilter('drink') }
         data-testid="filter-by-drink-btn"
       >
         Drinks
@@ -53,8 +55,9 @@ export default function DoneRecipes() {
       <ul>
         {filteredRecipes.map((recipe, index) => (
           <li key={ index }>
-            <Link to={ `/${recipe.type}/${recipe.id}` }>
+            <Link to={ `/${recipe.type}s/${recipe.id}` }>
               <img
+                width="200px"
                 src={ recipe.image }
                 alt={ recipe.name }
                 data-testid={ `${index}-horizontal-image` }
@@ -62,18 +65,11 @@ export default function DoneRecipes() {
               <p data-testid={ `${index}-horizontal-name` }>{recipe.name}</p>
             </Link>
             <p data-testid={ `${index}-horizontal-top-text` }>
-              {recipe.type === 'meals'
+              {recipe.type === 'meal'
                 ? `${recipe.nationality} - ${recipe.category}`
                 : recipe.alcoholicOrNot}
             </p>
             <p data-testid={ `${index}-horizontal-done-date` }>{recipe.doneDate}</p>
-            <button
-              data-testid={ `${index}-horizontal-share-btn` }
-              onClick={ () => copyText(recipe) }
-            >
-              Share
-
-            </button>
             <div>
               {recipe.tags.slice(0, 2).map((tag, tagIndex) => (
                 <span key={ tagIndex } data-testid={ `${index}-${tag}-horizontal-tag` }>
@@ -81,6 +77,16 @@ export default function DoneRecipes() {
                 </span>
               ))}
             </div>
+            <button
+              onClick={ () => copyText(recipe) }
+            >
+              <img
+                data-testid={ `${index}-horizontal-share-btn` }
+                src={ shareIcon }
+                alt="ícone do botão compartilhar"
+              />
+            </button>
+            {shareMessage && <h4>Link copied!</h4>}
           </li>
         ))}
       </ul>
