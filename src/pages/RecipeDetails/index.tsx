@@ -4,9 +4,10 @@ import { DoneRecipeType, DrinkType, FavoriteRecipeType, MealType } from '../../t
 import MealCard from '../../components/MealCard';
 import DrinkCard from '../../components/DrinkCard';
 import style from './style.module.css';
-import shareIcon from '../../images/shareIcon.svg';
-import heart_checked from '../../images/blackHeartIcon.svg';
-import heart_unchecked from '../../images/whiteHeartIcon.svg';
+import heart_unchecked from '../../assets/Icons/white-empty-heat.svg';
+import heart_checked from '../../assets/Icons/white-full-heart.svg';
+import shareBtn from '../../assets/Icons/white-share-btn.svg';
+import goBackButton from '../../assets/Icons/white-go-back-btn.svg';
 
 export default function RecipeDetails() {
   const location = useLocation().pathname;
@@ -94,16 +95,29 @@ export default function RecipeDetails() {
     else addFavoriteRecipe(storageData);
   };
 
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   return (
-    <main>
+    <main className={ style.detailsPageMain }>
+      <button onClick={ handleGoBack } className={ style.detailsPageGoBackBtn }>
+        <img
+          className={ style.detailsPageGoBackImg }
+          src={ goBackButton }
+          alt="voltar"
+        />
+      </button>
       <button
+        className={ style.detailsPageShareBtn }
         type="button"
         data-testid="share-btn"
         onClick={ copyText }
       >
-        <img src={ shareIcon } alt="ícone do botão compartilhar" />
+        <img src={ shareBtn } alt="ícone do botão compartilhar" />
       </button>
       <button
+        className={ style.detailsPageFavBtn }
         type="button"
         onClick={ favoriteRecipe }
       >
@@ -113,10 +127,10 @@ export default function RecipeDetails() {
           alt="imagem de coração"
         />
       </button>
-      {shareMessage && (
+      { shareMessage && (
         <h4>Link copied!</h4>
-      )}
-      {(recipeData !== null) && (
+      ) }
+      { (recipeData !== null) && (
         type === 'meals' ? (
           recipeData !== null && (
             <MealCard recipeData={ recipeData } />
@@ -126,31 +140,35 @@ export default function RecipeDetails() {
             <DrinkCard recipeData={ recipeData } />
           )
         )
-      )}
-      {buttonType === 'continue' ? (
-        <button
-          className={ style.btnStartRecipe }
-          data-testid="start-recipe-btn"
-          onClick={
-            () => navigate(`/${type}/${id}/in-progress`)
-          }
-        >
-          Continue Recipe
-        </button>
-      ) : (
-        showButtonStart && (
+      ) }
+      { buttonType === 'continue' ? (
+        <div className={ style.detailsPageStartButton }>
           <button
             className={ style.btnStartRecipe }
             data-testid="start-recipe-btn"
-            type="button"
             onClick={
               () => navigate(`/${type}/${id}/in-progress`)
             }
           >
-            Start Recipe
+            Continue Recipe
           </button>
+        </div>
+      ) : (
+        showButtonStart && (
+          <div className={ style.detailsPageContinueButton }>
+            <button
+              className={ style.btnStartRecipe }
+              data-testid="start-recipe-btn"
+              type="button"
+              onClick={
+                () => navigate(`/${type}/${id}/in-progress`)
+              }
+            >
+              Start Recipe
+            </button>
+          </div>
         )
-      )}
+      ) }
     </main>
   );
 }

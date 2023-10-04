@@ -1,0 +1,83 @@
+.loginPageMain {
+  align-items: center;
+  background-image: url('src/assets/Images/login-background-mobile.png');
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+
+.loginPageMain2 {
+  align-items: center;
+  background-image: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.loginPageTitle {
+  display: none;
+}
+
+.loginPageLogo {
+  align-self: center;
+  height: 231px;
+  margin-bottom: 170px;
+  width: 215px;
+}
+
+.loginPageForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.loginPageEmailInput {
+  background: rgba(255, 255, 255, 0.20);
+  border: 1px solid #FFF;
+  border-radius: 16.5px;
+  flex-shrink: 0;
+  height: 34px;
+  margin-bottom: 10px;
+  padding-left: 15px;
+  width: 219px;
+}
+
+.loginPagePasswordInput {
+  background: rgba(255, 255, 255, 0.20);
+  border: 1px solid #FFF;
+  border-radius: 16.5px;
+  flex-shrink: 0;
+  height: 34px;
+  padding-left: 15px;
+  width: 219px;
+}
+
+.loginPageButtonInput {
+  background: #FFCE01;
+  border: none;
+  border-radius: 8px;
+  flex-shrink: 0;
+  font-weight: bold;
+  height: 33px;
+  margin-bottom: 50px;
+  width: 219px;
+}
+
+.loginPageButtonInput:hover {
+  background: #FFC300;
+}
+
+.loginPageButtonInput:enabled {
+  color: white;
+}
+
+.loginPageHideButton {
+  background-color: transparent;
+  border: none;
+  position: relative;
+  bottom: 30px;
+  left: 190px;
+  width: fit-content;
+}

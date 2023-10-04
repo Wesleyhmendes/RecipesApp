@@ -2,8 +2,9 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import style from './style.module.css';
 import { DrinkType, FavoriteRecipeType, MealType } from '../../type';
-import heart_checked from '../../images/blackHeartIcon.svg';
-import heart_unchecked from '../../images/whiteHeartIcon.svg';
+import heart_unchecked from '../../assets/Icons/white-empty-heat.svg';
+import heart_checked from '../../assets/Icons/white-full-heart.svg';
+import shareBtn from '../../assets/Icons/white-share-btn.svg';
 
 export default function RecipesInProgress() {
   const [recipeData, setRecipeData] = useState<MealType | DrinkType>();
@@ -79,6 +80,9 @@ export default function RecipesInProgress() {
   const copyText = async () => {
     await navigator.clipboard.writeText(window.location.href.replace('/in-progress', ''));
     setShareMessage(true);
+    setTimeout(() => {
+      setShareMessage(false);
+    }, 1500);
   };
 
   const addFavoriteRecipe = (storageData: FavoriteRecipeType[]) => {
@@ -132,24 +136,90 @@ export default function RecipesInProgress() {
   return (
     <div>
       { recipeData && (
-        <section className="recipesIngProgressSection">
-          <button
-            data-testid="share-btn"
-            onClick={ copyText }
+        <section className={ style.progressPageMainSection }>
+          <div className={ style.progressPageinteractiveBtns }>
+            <button
+              className={ style.progressPageShareBtn }
+              data-testid="share-btn"
+              onClick={ copyText }
+            >
+              <img
+                className={ style.progressPageShareImg }
+                src={ shareBtn }
+                alt="compartilhar"
+              />
+            </button>
+            <button
+              className={ style.progressPageFavoriteBtn }
+              type="button"
+              onClick={ favoriteRecipe }
+            >
+              <img
+                className={ style.progressPageFavoriteImg }
+                data-testid="favorite-btn"
+                src={ isFavorite ? heart_checked : heart_unchecked }
+                alt="imagem de coração"
+              />
+            </button>
+
+            { shareMessage && <h4>Link copied!</h4> }
+          </div>
+
+          <img
+            className={ style.progressPageThumbImg }
+            data-testid="recipe-photo"
+            src={ recipeData[`str${typeRecipe}Thumb`] }
+            alt={ recipeData.strMeal }
+          />
+          <div className={ style.progressPageGradientImg } />
+          <div className={ style.progressPageTitleDiv }>
+            <h2
+              className={ style.progressPageFoodTitle }
+              data-testid="recipe-title"
+            >
+              { recipeData[`str${typeRecipe}`] }
+            </h2>
+            <p
+              className={ style.progressPageCategory }
+              data-testid="recipe-category"
+            >
+              { recipeData.strCategory }
+            </p>
+          </div>
+          <div className={ style.progressPageIngredientsDiv }>
+            <h2 className={ style.progressPageIngredientTitle }>
+              Ingredientes
+            </h2>
+            { ingredients.map((ingredient, index) => (
+              <label
+                data-testid={ `${index}-ingredient-step` }
+                key={ index }
+                className={
+                  usedIngredients.includes(ingredient)
+                    ? (style.ingredientUsed)
+                    : (style.ingredientUnused)
+                }
+              >
+                <input
+                  type="checkbox"
+                  value={ ingredient }
+                  onChange={ handleChange }
+                  checked={ usedIngredients.includes(ingredient) }
+                />
+                { ` ${ingredient}` }
+              </label>
+            )) }
+          </div>
+          <h2 className={ style.progressCardInstructionsTitle }>Modo de preparo</h2>
+          <p
+            className={ style.progressCardInstructionsText }
+            data-testid="instructions"
           >
-            Compartilhar
-          </button>
+            { recipeData.strInstructions }
+          </p>
+
           <button
-            type="button"
-            onClick={ favoriteRecipe }
-          >
-            <img
-              data-testid="favorite-btn"
-              src={ isFavorite ? heart_checked : heart_unchecked }
-              alt="imagem de coração"
-            />
-          </button>
-          <button
+            className={ style.progressPageFinishBtn }
             data-testid="finish-recipe-btn"
             disabled={ isDisable }
             onClick={ () => {
@@ -159,43 +229,8 @@ export default function RecipesInProgress() {
           >
             Finalizar
           </button>
-
-          {shareMessage && <h4>Link copied!</h4>}
-
-          <img
-            data-testid="recipe-photo"
-            src={ recipeData[`str${typeRecipe}Thumb`] }
-            alt={ recipeData.strMeal }
-          />
-
-          <h2 data-testid="recipe-title">{ recipeData[`str${typeRecipe}`] }</h2>
-
-          <p data-testid="recipe-category">{ recipeData.strCategory }</p>
-
-          {ingredients.map((ingredient, index) => (
-            <label
-              data-testid={ `${index}-ingredient-step` }
-              key={ index }
-              className={
-                usedIngredients.includes(ingredient)
-                  ? (style.ingredientUsed)
-                  : (style.ingredientUnused)
-              }
-            >
-              <input
-                type="checkbox"
-                value={ ingredient }
-                onChange={ handleChange }
-                checked={ usedIngredients.includes(ingredient) }
-              />
-              {ingredient}
-            </label>
-          ))}
-
-          <p data-testid="instructions">{ recipeData.strInstructions }</p>
-
         </section>
-      )}
+      ) }
     </div>
   );
 }

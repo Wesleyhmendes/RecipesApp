@@ -1,0 +1,179 @@
+.drinkCardMainSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.drinkCardThumbImg {
+  border-radius: 0px 0px 25px 25px;
+  width: 100%;
+  position: absolute;
+  z-index: -3;
+}
+
+.drinkCardGradient {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 1) 100%);
+  border-radius: 0px 0px 25px 25px;
+  height: 360px;
+  width: 100%;
+  z-index: -2;
+}
+
+/* Combinações */
+
+.drinkCardTitleAndCategory {
+  bottom: 100px;
+  position: relative;
+  z-index: -1;
+}
+
+/*  */
+
+.drinkCardTitle {
+  color: #FFCE01;
+  font-family: Poppins;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: 17px;
+  width: 280px;
+}
+
+.drinkCardBigTitle {
+  color: #FFCE01;
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: 17px;
+  width: 280px;
+}
+
+.drinkCardCategory {
+  color: #ffffff;
+  font-family: Poppins;
+  font-size: 23px;
+  font-style: normal;
+  line-height: normal;
+  margin-left: 17px;
+  margin-top: -10px;
+  width: fit-content;
+}
+
+.drinkCardIngredients {
+}
+
+.drinkCardIngredientsTitle {
+  color: #000;
+  font-family: Poppins;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  width: fit-content;
+}
+
+.drinkCardUl {
+  background: #F9F9F9;
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin: 0 auto;
+  margin-bottom: 25px;
+  margin-top: -35px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  width: 95%;
+}
+
+.drinkCardLi {
+  color: #000;
+  display: flex;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  width: fit-content;
+}
+
+.drinkCardIngredient {
+  
+}
+
+.drinkCardMeasure {}
+
+.drinkCardInstructionsTitle {
+  color: #000;
+  font-family: Poppins;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: 17px;
+}
+
+.drinkCardInstructions {
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  width: 90%;
+}
+
+.drinkCardVideo {
+  border-radius: 10px;
+  border: 1px solid #000;
+  background: #FFF;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
+  height: 177px;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  width: 95%;
+}
+
+
+
+
+/* Carrossel */
+
+.carouselImgMainDiv {
+  margin: 0 auto;
+  height: 540px;
+  width: fit-content;
+}
+
+.carouselImg {
+  
+  width: 200px;
+  border-radius: 10px;
+  background: #FFF;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.carouselPrevBtn,
+.carouselNextBtn {
+  
+}
+
+.carouselPrevSpan1,
+.carouselPrevSpan2 {
+  background-color: #FFCE01;
+  border-radius: 7px;
+}
+
+.carouselFoodTitle {
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+}

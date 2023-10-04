@@ -1,5 +1,54 @@
+.detailsPageGoBackBtn,
+.detailsPageShareBtn,
+.detailsPageFavBtn {
+  border: none;
+  position: absolute;
+}
+
+.detailsPageGoBackBtn {
+  background-color: transparent;
+  margin-top: 20px;
+  left: 20px;
+}
+
+.detailsPageShareBtn {
+  background-color: transparent;
+  margin-top: 275px;
+  right: 45px;
+}
+
+.detailsPageFavBtn {
+  background-color: transparent;
+  right: 15px;
+  margin-top: 275px;
+}
+
+
+
+.detailsPageMain {
+  
+}
+
+.detailsPageStartButton {
+  display: flex;
+  justify-content: center;
+}
+
+.detailsPageContinueButton {
+  display: flex;
+  justify-content: center;
+}
+
 .btnStartRecipe {
+  background: #FFCE01;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   bottom: 0;
+  margin-top: 25px;
+  margin-bottom: 25px;
   position: fixed;
-  width: 50%;
+  height: 33px;
+  text-align: center;
+  width: 75%;
 }

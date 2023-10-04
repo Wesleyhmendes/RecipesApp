@@ -1,0 +1,43 @@
+.headerWithImageMainSection {
+  align-items: center;
+  display: flex;
+  background-repeat: no-repeat;
+  height: 100px;
+}
+
+.headerWithImageImg {
+  
+  border-radius: 0px 0px 25px 25px;
+  position: absolute;
+  height: 130px;
+  width: 100%;
+  z-index: -5;
+}
+
+.headerWithImageGradient {
+  background: rgb(255,255,255);
+  background: linear-gradient(180deg, rgba(255,255,255,0) 40%, rgba(255, 255, 255, 0.716) 100%);
+  border-radius: 0px 0px 25px 25px;
+  height: 130px;
+  position: absolute;
+  width: 100%;
+  z-index: -4;
+}
+
+.headerWithImagePageNameAndProfile {
+  height: 38px;
+  margin-top: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.headerWithImagePageName {
+  align-self: center;
+  color: #000;
+  font-family: Poppins;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  left: 95px;
+}

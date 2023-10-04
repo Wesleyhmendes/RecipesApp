@@ -1,3 +1,180 @@
+.progressPageMainSection {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Botões de favoritar e compartilhar */
+
+.progressPageShareBtn {
+
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  height: 20px;
+  margin-bottom: 15px;
+}
+
+.progressPageShareImg {
+  
+  height: 20px;
+  margin-bottom: 15px;
+}
+
+.progressPageFavoriteBtn {
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  height: fit-content;
+  margin-bottom: 15px;
+  margin-left: 17px;
+  width: fit-content;
+}
+
+.progressPageFavoriteImg {
+  
+  height: 20px;
+}
+
+.progressPageinteractiveBtns {
+  
+  align-items: center;
+  display: flex;
+  margin-top: 40px;
+  margin-left: 17px;
+}
+
+/*    */
+
+/* Imagem principal e gradiente */
+
+.progressPageFinishBtn {
+  color: #FFF;
+  background: #FFCE01;
+  border: #FFCE01;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  font-family: Poppins;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 700;
+  height: 33px;
+  line-height: normal;
+  margin: 0 auto;
+  margin-bottom: 70px;
+  margin-top: 30px;
+  width: 220px;
+}
+
+.progressPageThumbImg {
+  
+  border-radius: 0px 0px 25px 25px;
+  height: 300px;
+  position: absolute;
+  width: 100%;
+  z-index: -3;
+}
+
+.progressPageGradientImg {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 1) 100%);
+  border-radius: 0px 0px 25px 25px;
+  height: 300px;
+  position: absolute;
+  width: 100%;
+  z-index: -2;
+}
+
+/*    */
+
+/* Título e categoria */
+
+.progressPageTitleDiv {
+  bottom: 105px;
+  line-height: 10px;
+  margin-left: 7px;
+  position: relative;
+  width: fit-content;
+  z-index: -1;
+}
+
+.progressPageFoodTitle {
+  color: #FFCE01;
+  font-family: Poppins;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: 17px;
+  margin-top: 230px;
+  margin-bottom: -5px;
+}
+
+.progressPageCategory {
+  color: #ffffff;
+  font-family: Poppins;
+  font-size: 23px;
+  font-style: normal;
+  line-height: normal;
+  margin-left: 17px;
+  width: fit-content;
+}
+
+
+/* Ingredientes */
+
+.progressPageIngredientsDiv {
+
+  background: #F9F9F9;
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  margin-top: -70px;
+  padding: 15px;
+  width: 95%;
+}
+
+.progressPageIngredientTitle {
+
+  color: #000;
+  font-family: Poppins;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+/* Instruções */
+
+
+.progressCardInstructionsTitle {
+  
+  color: #000;
+  font-family: Poppins;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: 17px;
+  margin: 0 auto;
+  width: 90%;
+}
+
+.progressCardInstructionsText {
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  width: 90%;
+}
+
 .ingredientUsed {
   text-decoration: line-through solid black;
 }

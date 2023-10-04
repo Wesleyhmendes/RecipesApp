@@ -1,0 +1,205 @@
+.recipePageCard {
+  
+  align-items: center;
+  background: #F9F9F9;
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  height: 131px;
+  margin: 0 auto;
+  margin-bottom: 16px;
+  padding-left: 8px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  width: 324px;
+}
+
+.recipePageCardLast {
+  
+  align-items: center;
+  background: #F9F9F9;
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  height: 131px;
+  margin: 0 auto;
+  margin-bottom: 60px;
+  padding-left: 8px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  width: 324px;
+}
+
+.recipePageCardText {
+  display: flex;
+  flex-direction: column;
+  line-height: 15px;
+  width: 180px;
+}
+
+.recipePageFoodImg {
+  height: 108px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  margin-right: 11px;
+  width: 122px;
+}
+
+.recipePageTitleAndCategory {
+}
+
+.recipePageCardCategory {
+  color: rgba(0, 0, 0, 0.60);
+  font-family: Poppins;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: -10px;
+}
+
+.recipePageFoodName {
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  width: 150px;
+}
+
+.recipePageFavDiv {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.recipePageFavBtn {
+  border: none;
+  background-color: transparent;
+}
+
+.recipePageFavBtnImg {
+ margin-top: -17px;
+ margin-right: 5px;
+}
+
+.recipePageFavDiv {
+  align-items: center;
+  height: 50px;
+  display: flex;
+}
+
+.recipePageDetailBtn {
+  align-self: self-start;
+  background: #FFCE01;
+  border: none;
+  border-radius: 8px;
+  color: #000;
+  font-family: Poppins;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  height: 20px;
+  flex-shrink: 0;
+  text-align: center;
+  width: 120px;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Drinks */
+
+.recipePageCardDrink {
+  
+  align-items: center;
+  background: #F9F9F9;
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  height: 131px;
+  margin: 0 auto;
+  margin-bottom: 16px;
+  padding-left: 8px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  width: 324px;
+}
+
+.recipePageCardLastDrink {
+  align-items: center;
+  background: #F9F9F9;
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  height: 131px;
+  margin: 0 auto;
+  margin-bottom: 60px;
+  padding-left: 8px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  width: 324px;
+}
+
+.recipePageDrinkImg {
+  width: 122px;
+  height: 108px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  margin-right: 11px;
+}
+
+.recipePageCardDrinkText {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  line-height: 10px;
+}
+
+.recipePageDrinkName {
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 15px;
+  width: 150px;
+}
+
+.recipePageDrinkAlcoholic {
+  align-self: flex-start;
+  color: rgba(0, 0, 0, 0.60);
+  font-family: Poppins;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-top: -10px;
+}
+
+.recipePageFavDrinkBtn {
+  border: none;
+  background-color: transparent;
+}
+
+.recipePageFavDrinkImg {
+  margin-top: -17px;
+  margin-right: 5px;
+}
+
+.recipePageDrinkNfav {
+  align-items: center;
+  height: 50px;
+  display: flex;
+}

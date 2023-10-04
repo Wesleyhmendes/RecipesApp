@@ -1,0 +1,133 @@
+/* Filtros */
+
+.favoritePageFiltersDiv {
+  
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+.favoritePageFilterButton {
+  
+  background-color: transparent;
+  border: none;
+  height: 25px;
+}
+
+.favoritePageFilterTextFalse {
+  
+  color: black;
+  width: 120px;
+}
+
+.favoritePageFilterTextTrue {
+  
+  color: #EB7F03;
+  width: 120px;
+}
+
+.favoritePageFiltersInsideDivFalse {
+  
+  align-items: center;
+  border-bottom: 1.5px solid black;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 120px;
+}
+
+.favoritePageFiltersInsideDivTrue {
+  
+  color: #ff0000;
+  border-bottom: 1.5px solid #EB7F03;
+}
+
+/* Card */
+
+.favoritePageRecipeCardUl {
+  
+  margin: 0 auto;
+}
+
+.favoritePageRecipeCard {
+  
+  align-items: center;
+  background: #F9F9F9;
+  border-radius: 15px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  height: 131px;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  padding-left: 10px;
+  width: 324px;
+}
+
+.favoritePageRecipeCardText {
+  
+  line-height: 10px;
+  width: 150px;
+}
+
+.favoritePageRecipeCardImg {
+  border-radius: 15px;
+  flex-shrink: 0;
+  height: 108px;
+  margin-right: 15px;
+  width: 122px;
+}
+
+
+.favoritePageRecipeCardName {
+  
+  color: #000;
+  font-family: Poppins;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.favoritePageRecipeCardShareBtn {
+  background: transparent;
+  border: none;
+}
+
+.favoritePageRecipeCardShareImg {
+  
+  height: 15px;
+  position: relative;
+  bottom: 7px;
+  width: 14px;
+}
+
+/* Combinações */
+
+
+
+.favoritePageFavoriteBtn {
+  
+  background-color: transparent;
+  border: none;
+}
+
+.favoritePageFavoriteImg {
+  
+  margin-bottom: 15px;
+  width: 20px;
+}
+
+.favoritePageRecipeCardNameAndShare {
+  
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.favoritePageCategory,
+.favoritePageNationality {
+  font-family: Poppins;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+}

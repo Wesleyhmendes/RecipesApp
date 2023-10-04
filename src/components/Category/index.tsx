@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import DrinksContext from '../../context/DrinkContext/DrinksContext';
 import MealsContext from '../../context/MealContext/MealsContext';
+import style from './style.module.css';
 
 export default function Category() {
   const [categoryButtons, setCategoryButtons] = useState([]);
@@ -110,17 +111,19 @@ export default function Category() {
       { loading ? (
         <p>Carregando...</p>
       ) : (
-        <div>
+        <div className={ style.categoryMaindiv }>
           { categoryButtons.map((category: any, index) => (
             <button
+              className={ style.categoryButton }
               onClick={ () => handleClick(category.strCategory, index) }
               data-testid={ `${category.strCategory}-category-filter` }
               key={ category.strCategory }
             >
-              { category.strCategory }
+              { category.strCategory.split(' ')[0] }
             </button>
           )) }
           <button
+            className={ style.categoryButtonAll }
             onClick={ handleClear }
             data-testid="All-category-filter"
           >

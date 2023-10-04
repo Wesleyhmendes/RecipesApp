@@ -1,0 +1,82 @@
+.searchBarMainDiv {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-top: 15px;
+  width: 100%;
+}
+
+/* Input e botão de pesquisa */
+
+.searchBarInputAndBtn {
+  
+  display: flex;
+}
+
+.searchBarInput {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 50px;
+  margin-left: 80px;
+  position: relative;
+  width: 60%;
+  z-index: -1;
+}
+
+.searchBarBtn {
+  background-color: transparent;
+  border: none;
+  border-radius: 50px;
+  font-size: 12px;
+  height: 27px;
+  position: relative;
+  right: 85px;
+  bottom: 1.5px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+
+/* Radio Buttons */
+
+.searchBarFilters {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.searchBarFilterInput {
+  display: none;
+}
+
+.searchBarFilterTextFalse {
+  color: black;
+  text-align: center;
+  width: 120px;
+}
+
+.searchBarFilterTextTrue {
+  color: #EB7F03;
+  text-align: center;
+  width: 120px;
+}
+
+.searchBarFiltersInsideDivFalse {
+  align-items: center;
+  border-bottom: 1.5px solid black;
+  display: flex;
+  justify-content: center;
+  height: 15px;
+  text-align: center;
+  width: 120px;
+}
+
+.searchBarFiltersInsideDivTrue {
+  border-bottom: 1.5px solid #EB7F03;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 15px;
+  text-align: center;
+  width: 120px;
+}
