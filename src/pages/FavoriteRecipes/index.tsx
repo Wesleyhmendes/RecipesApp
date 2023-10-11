@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { FavoriteRecipesStorage } from '../../type';
 import HeaderWithImage from '../../components/HeaderWithImage';
 import shareIcon from '../../assets/Icons/share-icon.svg';
+import blackHeartIcon from '../../images/blackHeartIcon.svg';
 import style from './style.module.css';
 
 export default function FavoriteRecipes() {
@@ -140,7 +141,7 @@ export default function FavoriteRecipes() {
                   <img
                     className={ style.favoritePageFavoriteImg }
                     data-testid={ `${index}-horizontal-favorite-btn` }
-                    src="src/images/blackHeartIcon.svg"
+                    src={ blackHeartIcon }
                     alt="favoritar"
                   />
                 </button>

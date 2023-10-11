@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import SearchBar from '../SearchBar';
 import profileIcon from '../../assets/Icons/profile-icon.svg';
+import whiteHeadPhoto from '../../assets/Images/white-header-photo-desktop(2).jpg';
+import searchIcon from '../../images/searchIcon.svg';
 import style from './style.module.css';
 
 function Header() {
   const [searchVisible, setSearchVisible] = useState(false);
 
   const pathName = useLocation().pathname;
-  const isProfilePage = pathName === ('/profile');
 
   const pageTitle = useLocation().pathname
     .split('/')[1]
@@ -30,7 +31,7 @@ function Header() {
         <div className={ style.headerGradient2 } />
         <img
           className={ style.headerImg }
-          src="src/assets/Images/white-header-photo-desktop(2).jpg"
+          src={ whiteHeadPhoto }
           alt="frutas"
         />
         <div className={ style.headerPageNameAndProfile }>
@@ -51,7 +52,7 @@ function Header() {
             <button className={ style.headerLupeBtn } onClick={ toggleSearch }>
               <img
                 className={ style.headerLupeImg }
-                src="src/images/searchIcon.svg"
+                src={ searchIcon }
                 alt="Search"
                 data-testid="search-top-btn"
               />
