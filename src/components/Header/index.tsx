@@ -10,7 +10,6 @@ function Header() {
   const [searchVisible, setSearchVisible] = useState(false);
 
   const pathName = useLocation().pathname;
-  const isProfilePage = pathName === ('/profile');
 
   const pageTitle = useLocation().pathname
     .split('/')[1]
