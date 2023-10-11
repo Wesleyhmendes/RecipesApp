@@ -22,7 +22,7 @@ Além disso, neste projeto, foi verificado nossa capacidade de:
 Para garantir a qualidade do código, utilizamos neste projeto os linters ESLint e StyleLint. Assim, o código se manteve alinhado com as boas práticas de desenvolvimento, além de ser mais legível e de fácil manutenção. 👨🏻‍💻
 
 ### ⚙️ Projeto funcionando ###
-Você pode ver o projeto funcionando [aqui]([https://app.betrybe.com/course/4d67f5b4-34a6-489f-a205-b6c7dc50fc16/](https://vercel.com/dashboard)) Lembre-se de que se trata de um app estilizado para a resolução 360x640. A estilização para desktop ainda não foi implementada.
+Você pode ver o projeto funcionando [aqui]([https://recipes-app-amber.vercel.app/](https://recipes-app-amber.vercel.app/)) Lembre-se de que se trata de um app estilizado para a resolução 360x640. A estilização para desktop ainda não foi implementada.
 
 <br />
 
