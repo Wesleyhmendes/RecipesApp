@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import style from './style.module.css';
+import yellowHeader from '../../assets/Images/yellow-header-mobile.png';
 
 function HeaderWithImage() {
   const pageTitle = useLocation().pathname
@@ -14,7 +15,7 @@ function HeaderWithImage() {
         <div className={ style.headerWithImageGradient2 } />
         <img
           className={ style.headerWithImageImg }
-          src="src/assets/Images/yellow-header-mobile.png"
+          src={ yellowHeader }
           alt="frutas"
         />
         <div className={ style.headerWithImagePageNameAndProfile }>
