@@ -21,6 +21,11 @@ Além disso, neste projeto, foi verificado nossa capacidade de:
 
 Para garantir a qualidade do código, utilizamos neste projeto os linters ESLint e StyleLint. Assim, o código se manteve alinhado com as boas práticas de desenvolvimento, além de ser mais legível e de fácil manutenção. 👨🏻‍💻
 
+### ⚙️ Projeto funcionando ###
+Você pode ver o projeto funcionando [aqui]([https://app.betrybe.com/course/4d67f5b4-34a6-489f-a205-b6c7dc50fc16/](https://vercel.com/dashboard)) Lembre-se de que se trata de um app estilizado para a resolução 360x640. A estilização para desktop ainda não foi implementada.
+
+<br />
+
 ## Requisitos 📜 ##
 <details>
   <summary><strong>Ver Detalhes</strong></summary><br />
@@ -106,7 +111,7 @@ Tela principal de receitas
 61 - Redirecione a pessoa usuária de modo que, ao clicar no botão Logout, o localStorage seja limpo e a rota mude para a tela de login
 </details>
 
-## ## 
+<br />
 
 ### Além disso, toda a aplicação foi posteriormente estilizada com CSS Modules garantindo um layout agradável e responsivo. ###
 
