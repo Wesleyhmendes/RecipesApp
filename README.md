@@ -28,8 +28,9 @@ Você pode ver o projeto funcionando <a href=“https://recipes-app-amber.vercel
 
 ## Requisitos 📜 ##
 <details>
-  <summary><strong>Ver Detalhes</strong></summary><br />
-   Tela de login
+  <summary><strong>Ver Detalhes</strong></summary>
+
+## Tela de login
 1 - Crie todos os elementos que devem respeitar os atributos descritos no protótipo para a tela de login
 <br />
 2 - Desenvolva a tela de maneira que a pessoa consiga escrever seu e-mail no input de email e sua senha no input de senha
@@ -49,8 +50,8 @@ Você pode ver o projeto funcionando <a href=“https://recipes-app-amber.vercel
 8 - Desenvolva o botão de busca que, ao ser clicado, permita a visualização da barra de busca ou a esconda
 <br />
 
-Barra de busca – Header
-9 - Implemente os elementos da barra de busca respeitando os atributos descritos no protótipo
+## Barra de busca – Header
+9  - Implemente os elementos da barra de busca respeitando os atributos descritos no protótipo
 <br />
 10 - Implemente três radio buttons na barra de busca: Ingredient, Name e First letter
 <br />
@@ -71,7 +72,7 @@ Barra de busca – Header
 17 - Redirecione a pessoa usuária para a tela correta ao clicar em cada ícone no menu inferior
 <br />
 
-Tela principal de receitas
+## Tela principal de receitas
 18 - Carregue as 12 primeiras receitas de comidas ou bebidas, uma em cada card
 <br />
 19 - Implemente os botões de categoria para serem utilizados como filtro
