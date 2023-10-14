@@ -30,11 +30,11 @@ Você pode ver o projeto funcionando <a href=“https://recipes-app-amber.vercel
 <details>
   <summary><strong>Ver Detalhes</strong></summary><br />
    Tela de login
-1 - Crie todos os elementos que devem respeitar os atributos descritos no protótipo para a tela de login
-2 - Desenvolva a tela de maneira que a pessoa consiga escrever seu e-mail no input de email e sua senha no input de senha
-3 - Desenvolva a tela de maneira que o formulário só seja válido após o preenchimento de um e-mail válido e de uma senha com mais de 6 caracteres
-4 - Após a submissão do formulário, salve no localStorage o e-mail da pessoa usuária na chave user
-5 - Redirecione a pessoa usuária para a tela principal de receitas de comidas após a submissão e validação com sucesso do login
+[x] - Crie todos os elementos que devem respeitar os atributos descritos no protótipo para a tela de login
+[x] - Desenvolva a tela de maneira que a pessoa consiga escrever seu e-mail no input de email e sua senha no input de senha
+[x] - Desenvolva a tela de maneira que o formulário só seja válido após o preenchimento de um e-mail válido e de uma senha com mais de 6 caracteres
+[x] - Após a submissão do formulário, salve no localStorage o e-mail da pessoa usuária na chave user
+[x] - Redirecione a pessoa usuária para a tela principal de receitas de comidas após a submissão e validação com sucesso do login
 
 ## Header
 6 - Implemente o header de acordo com a necessidade de cada tela
