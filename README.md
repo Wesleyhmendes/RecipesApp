@@ -24,7 +24,9 @@ Para garantir a qualidade do código, utilizamos neste projeto os linters ESLint
 ### ⚙️ Projeto funcionando ###
 Você pode ver o projeto funcionando <a href=“https://recipes-app-amber.vercel.app/“>aqui</a>. Lembre-se de que se trata de um app estilizado para mobile. A estilização para desktop ainda não foi implementada.
 
+<div align="center">
 <img src="./src/assets/readmePics/homePageMeal.png" alt="homePageMeal.png" width="250"> <img src="./src/assets/readmePics/profilePage.png" alt="profilePage.png" width="250">
+</div>
 
 <br />
 
